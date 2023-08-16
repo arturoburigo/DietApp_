@@ -4,6 +4,7 @@ import { Header } from "../Components/Header";
 import { DietPercentageCard } from "../Components/DietPercentageCard";
 import { Button } from "../Components/Button";
 import { FoodCard } from "../Components/FoodCard";
+import { SafeAreaView } from "react-native";
 
 export function Home() {
     const [foods, setFoods] = useState([
@@ -62,29 +63,32 @@ export function Home() {
     }));
 
     return (
-        <VStack flex={1} bg="white" px={8}>
-            <Header />
-            <DietPercentageCard background="green.light" />
-            <Text mt={6} mb={3}>Refeições</Text>
-            <Button title="+ Nova refeição" />
-            <SectionList
-                showsVerticalScrollIndicator={false}
-                sections={sections}
-                keyExtractor={(item) => item.hour}
-                renderItem={({ item }) => (
-                    <FoodCard
-                        title={item.title}
-                        hour={item.hour}
-                        isHealthy={item.isHealthy}
-                    />
-                )}
-                renderSectionHeader={({ section }) => (
-                    <Heading fontSize="lg" mt={6} >
-                        <Text>{section.title}</Text>
-                    </Heading>
-                )
-                }
-            />
-        </VStack >
+        <SafeAreaView style={{flex: 1}}>
+            <VStack flex={1} bg="white" px={8}>
+                        <Header />
+                        <DietPercentageCard background="green.light" />
+                        <Text mt={6} mb={3}>Refeições</Text>
+                        <Button title="+ Nova refeição" />
+                        <SectionList
+                            showsVerticalScrollIndicator={false}
+                            sections={sections}
+                            keyExtractor={(item) => item.hour}
+                            renderItem={({ item }) => (
+                                <FoodCard
+                                    title={item.title}
+                                    hour={item.hour}
+                                    isHealthy={item.isHealthy}
+                                />
+                            )}
+                            renderSectionHeader={({ section }) => (
+                                <Heading fontSize="lg" mt={6} >
+                                    <Text>{section.title}</Text>
+                                </Heading>
+                            )
+                            }
+                        />
+                    </VStack >
+        </SafeAreaView>
+     
     );
 }

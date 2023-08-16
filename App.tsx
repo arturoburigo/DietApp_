@@ -10,9 +10,7 @@ export default function App() {
   return (
     <NativeBaseProvider theme={THEME}>
       <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
-      <SafeAreaView style={{ flex: 1 }}>
         <DietRegister />
-      </SafeAreaView>
     </NativeBaseProvider>
   );
 }

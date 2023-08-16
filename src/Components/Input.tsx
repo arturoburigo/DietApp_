@@ -3,12 +3,13 @@ import { VStack, Text, Input as NativeBaseInput } from "native-base";
 type Props = {
     title: string;
     height?: string;
+    width?: string
     multilineEnabled?: boolean; // Nova propriedade
 }
 
-export function Input({ title, height, multilineEnabled }: Props) {
+export function Input({ title, height, multilineEnabled, width }: Props) {
     return (
-        <VStack>
+        <VStack w={width}>
             <Text fontWeight={"bold"} fontSize={"sm"}>
                 {title}
             </Text>

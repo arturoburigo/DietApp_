@@ -1,7 +1,7 @@
 import { VStack, Text, HStack } from "native-base";
 import { InformationCard } from "../Components/InformationCard";
 import { Feather } from '@expo/vector-icons'
-import { TouchableOpacity } from "react-native";
+import { StatusBar, TouchableOpacity } from "react-native";
 
 export function Statistics() {
     return (
