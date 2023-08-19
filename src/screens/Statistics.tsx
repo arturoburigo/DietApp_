@@ -2,18 +2,25 @@ import { VStack, Text, HStack } from "native-base";
 import { InformationCard } from "../Components/InformationCard";
 import { Feather } from '@expo/vector-icons'
 import { StatusBar, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 export function Statistics() {
+    const navigation = useNavigation()
+
+    function handleGoBack(){
+        navigation.goBack()
+    }
+
     return (
         <VStack flex={1}>
             <VStack justifyContent={"center"} bg={"green.mid"} py={"12"} px={7}>
                 <TouchableOpacity>
-                    <Feather name="arrow-left" size={26} color={'#639339'} />
+                    <Feather name="arrow-left" size={26} color={'#639339'} onPress={handleGoBack} />
                 </TouchableOpacity>
                 <Text fontWeight={"bold"} fontSize={"3xl"} textAlign={"center"}>90,86%</Text>
                 <Text textAlign={"center"}>das refeições dentro da dieta</Text>
             </VStack>
-            <VStack flex={1} alignItems={"center"} px={8}>
+            <VStack flex={1} alignItems={"center"} px={8} bg={"white"}>
                 <Text fontWeight={"bold"} mt={8} mb={8}>Estatisticas gerais</Text>
                 <InformationCard background="gray.200" description="das refeições dentro da dieta" number={32} width="full" />
                 <InformationCard background="gray.200" description="refeições registradas" number={32} width="full" />

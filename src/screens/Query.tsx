@@ -3,9 +3,12 @@ import React, { useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { Alert, TouchableOpacity } from "react-native";
 import {Button} from '../Components/Button'
+import { useNavigation } from "@react-navigation/native";
+import { AppNavigatorRoutesProps } from "../routes/app.routes";
 
 
 export function Query(){
+    const navigation = useNavigation<AppNavigatorRoutesProps>()
 
     function handleRemoveFood() {
         Alert.alert(
@@ -20,12 +23,15 @@ export function Query(){
                     text: 'Sim, Excluir',
                     style: 'destructive',  // Estilo que indica uma ação destrutiva (iOS)
                     onPress: () => {
-                        // Aqui vai o código para realmente remover a refeição
-                        console.log('Refeição excluída');
+                        navigation.navigate('home')
                     }
                 }
             ]
         );
+    }
+
+    function handleGoEditFood(){
+        navigation.navigate('dietRegister')
     }
     
 
@@ -57,7 +63,7 @@ export function Query(){
                     <Text>12/08/2022 as 16:00</Text>
                 </VStack>
                 <VStack space={2}>
-                    <Button title="Editar refeicao" />
+                    <Button title="Editar refeicao" onPress={handleGoEditFood}/>
 
                     <Button title="Excluir refeicao" variant={"outline"} onPress={handleRemoveFood}/>
                 </VStack>

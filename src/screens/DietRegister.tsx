@@ -5,16 +5,28 @@ import { TouchableOpacity } from "react-native";
 import { Input } from "../Components/Input";
 import { Button } from '../Components/Button';
 import { DietButton } from "../Components/DietButton";
+import { useNavigation } from "@react-navigation/native";
+import { AppNavigatorRoutesProps } from '../routes/app.routes';
+
 
 export function DietRegister() {
     const [date, setDate] = useState(new Date());
     const [activeButton, setActiveButton] = useState('');
+    const navigation = useNavigation<AppNavigatorRoutesProps>()
+
+    function handleGoBack(){
+        navigation.goBack()
+    }
+
+    function handleFeedback(){
+        navigation.navigate('feedback')
+    }
 
     return (
-        <VStack flex={1}>
+        <VStack flex={1} background={'white'}>
             <HStack bg={"gray.200"} py={24} px={7} alignItems={"center"} justifyContent="space-between" mt={-5}>
                 <TouchableOpacity>
-                    <Feather name="arrow-left" size={26} />
+                    <Feather name="arrow-left" size={26} onPress={handleGoBack} />
                 </TouchableOpacity>
                 <Text fontWeight={"bold"} fontSize={"lg"}>Nova Refeicao</Text>
                 <Text></Text>
@@ -45,7 +57,7 @@ export function DietRegister() {
                 </VStack>
 
                 <VStack>
-                    <Button title="Cadastrar" />
+                    <Button title="Cadastrar" onPress={handleFeedback} />
                 </VStack>
             </VStack>
         </VStack>

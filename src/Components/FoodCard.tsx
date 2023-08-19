@@ -1,15 +1,15 @@
-import { Text, HStack, View, } from "native-base";
-import { TouchableOpacity } from "react-native";
+import { Text, HStack, View, Button } from "native-base";
+import { TouchableOpacity, TouchableOpacityProps } from "react-native";
 
-type Props = {
+type Props = TouchableOpacityProps & {
     isHealthy: boolean;
     title: string;
     hour: string;
 };
 
-export function FoodCard({ isHealthy, title, hour }: Props) {
+export function FoodCard({ isHealthy, title, hour, ...rest }: Props) {
     return (
-        <TouchableOpacity>
+        <TouchableOpacity {...rest}>
             <HStack px={3} mt={2} py={4} borderWidth={1} borderColor={"gray.300"} rounded={"md"} alignItems={"center"} justifyContent={"space-between"}>
                 <HStack>
                     <Text fontWeight={"bold"}>{hour}</Text>
