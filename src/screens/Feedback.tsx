@@ -27,7 +27,7 @@ export function Feedback({isOnDiet = false}: Props) {
                     <>Você <Text fontWeight="bold">saiu da dieta</Text>. dessa vez, mas continue se esforçando e não desista!</>
                 )}
             </Text>
-            <Image source={isOnDiet ? onDiet : notOnDiet} mb={10}/>
+            <Image source={isOnDiet ? onDiet : notOnDiet} mb={10} alt="Ondiet or not image"/>
             <Button title="Ir para a pagina inicial" onPress={handleGoHome}/>
         </VStack>
     )
