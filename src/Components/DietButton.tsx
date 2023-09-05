@@ -1,6 +1,6 @@
-import { Pressable, Circle, HStack, Text, IPressableProps } from "native-base";
+import { Pressable, Circle, HStack, Text, IPressableProps, IIconButtonProps } from "native-base";
 
-type Props = IPressableProps & {
+type Props = IPressableProps & IIconButtonProps & {
     type: 'Sim' | 'Nao'
     isActive: boolean
     width: string

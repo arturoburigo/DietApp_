@@ -1,13 +1,13 @@
-import { VStack, Text, Input as NativeBaseInput } from "native-base";
+import { VStack, Text, Input as NativeBaseInput, IInputProps } from "native-base";
 
-type Props = {
+type Props = IInputProps & {
     title: string;
     height?: string;
     width?: string
     multilineEnabled?: boolean; // Nova propriedade
 }
 
-export function Input({ title, height, multilineEnabled, width }: Props) {
+export function Input({ title, height, multilineEnabled, width, ...rest }: Props) {
     return (
         <VStack w={width}>
             <Text fontWeight={"bold"} fontSize={"sm"}>
@@ -28,6 +28,7 @@ export function Input({ title, height, multilineEnabled, width }: Props) {
                 style={multilineEnabled ? { alignItems: 'flex-start' } : undefined} // Aplica se multilineEnabled for true
                 multiline={multilineEnabled} // Aplica se multilineEnabled for true
                 numberOfLines={multilineEnabled ? 4 : undefined} // Aplica se multilineEnabled for true
+                {...rest}
             />
         </VStack>
     )

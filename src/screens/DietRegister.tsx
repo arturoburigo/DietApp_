@@ -7,10 +7,17 @@ import { Button } from '../Components/Button';
 import { DietButton } from "../Components/DietButton";
 import { useNavigation } from "@react-navigation/native";
 import { AppNavigatorRoutesProps } from '../routes/app.routes';
+import { FoodRegisterCreate } from '../storage/food/foodRegisterCreate';
 
 
 export function DietRegister() {
-    const [date, setDate] = useState(new Date());
+    const [foodName, setFoodName] = useState('')
+    const [description, setDescription] = useState('')
+    const [hour, setHour] = useState('')
+    const [date, setDate] = useState('')
+    const [onDiet, setIsOnDiet] = useState(false)
+
+
     const [activeButton, setActiveButton] = useState('');
     const navigation = useNavigation<AppNavigatorRoutesProps>()
 
@@ -21,7 +28,17 @@ export function DietRegister() {
     function handleFeedback(){
         console.log(activeButton)
 
-        navigation.navigate('feedback', {activeButton})
+    }
+
+    async function handleFoodRegister(){
+        try{
+            await FoodRegisterCreate(foodName, description,date, hour, onDiet)
+            console.log({foodName, description, hour, date, onDiet})
+            navigation.navigate('feedback', {activeButton})
+            
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
@@ -45,21 +62,38 @@ export function DietRegister() {
                 bg={"white"}
             >
                 <VStack>
-                    <Input title="Nome" />
-                    <Input title="Descricao" multilineEnabled height="20" />
+                    <Input title="Nome" onChangeText={setFoodName}/>
+                    <Input title="Descricao" multilineEnabled height="20" onChangeText={setDescription}/>
                     <HStack justifyContent={"space-between"}>
-                        <Input title="Date" width="48%" />
-                        <Input title="Hour" width="48%" />
+                        <Input title="Date" width="48%" onChangeText={setDate}/>
+                        <Input title="Hour" width="48%" onChangeText={setHour}/>
                     </HStack>
                     <Text fontWeight={"bold"} fontSize={"sm"} mb={4}>Esta dentro da dieta?</Text>
                     <HStack justifyContent={"space-between"}>
-                        <DietButton type="Sim" width="48%" isActive={activeButton === 'Sim'} onPress={() => setActiveButton('Sim')} />
-                        <DietButton type="Nao" width="48%" isActive={activeButton === 'Nao'} onPress={() => setActiveButton('Nao')} />
+                    <DietButton 
+                        type="Sim" 
+                        width="48%" 
+                        isActive={activeButton === 'Sim'} 
+                        onPress={() => {
+                            setActiveButton('Sim');
+                            setIsOnDiet(true);
+                        }} 
+                    />
+                    <DietButton 
+                        type="Nao" 
+                        width="48%" 
+                        isActive={activeButton === 'Nao'} 
+                        onPress={() => {
+                            setActiveButton('Nao');
+                            setIsOnDiet(false);
+                        }} 
+                    />
+
                     </HStack>
                 </VStack>
 
                 <VStack>
-                    <Button title="Cadastrar" onPress={handleFeedback} />
+                    <Button title="Cadastrar" onPress={handleFoodRegister} />
                 </VStack>
             </VStack>
         </VStack>
