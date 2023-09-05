@@ -7,6 +7,7 @@ import { FoodCard } from "../Components/FoodCard";
 import { SafeAreaView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { AppNavigatorRoutesProps } from "../routes/app.routes";
+import { getAllFood } from "../storage/food/foodgetAll";
 
 export function Home() {
     const navigation = useNavigation<AppNavigatorRoutesProps>()
@@ -58,6 +59,10 @@ export function Home() {
             ],
         }
     ]);
+
+    async function fetchFoodRegister() {
+        
+    }
 
     // Transform foods into sections
     const sections = foods.map(({ data, meals }) => ({

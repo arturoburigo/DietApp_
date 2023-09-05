@@ -19,7 +19,9 @@ export function DietRegister() {
     }
 
     function handleFeedback(){
-        navigation.navigate('feedback')
+        console.log(activeButton)
+
+        navigation.navigate('feedback', {activeButton})
     }
 
     return (

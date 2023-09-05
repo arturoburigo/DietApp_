@@ -34,13 +34,11 @@ export function Query(){
         navigation.navigate('dietRegister')
     }
     
-
-
     return (
         <VStack flex={1}>
             <HStack bg={"gray.200"} py={24} px={8} alignItems={"center"} justifyContent="space-between" mt={-5}>
                 <TouchableOpacity >
-                    <Feather name="arrow-left" size={26} />
+                    <Feather name="arrow-left" size={26} onPress={() => navigation.goBack()} />
                 </TouchableOpacity>
                 <Text fontWeight={"bold"} fontSize={"lg"}>Refeicao</Text>
                 <Text></Text>

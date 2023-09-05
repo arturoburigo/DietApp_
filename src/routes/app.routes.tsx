@@ -13,7 +13,9 @@ import { Query } from "../screens/Query";
     home: undefined;
     statistics: undefined;
     dietRegister: undefined;
-    feedback: undefined;
+    feedback: {
+      activeButton: string;
+    };
     query: undefined;
   };
   
